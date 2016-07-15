@@ -1,5 +1,5 @@
 {
-  "name": "tether-select",
+  "name": "tether-select-2",
   "version": "1.1.1",
   "description": "Styleable select elements built on Tether",
   "authors": [
@@ -10,7 +10,6 @@
     "Nicholas Hwang <nick.joosung.hwang@gmail.com>"
   ],
   "scripts": {
-    "install": "bower install",
     "watch": "gulp watch",
     "build": "gulp build"
   },

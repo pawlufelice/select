@@ -17,12 +17,12 @@ Installing via `npm` and `bower` will bring in the above dependencies as well.
 
 __npm__
 ```sh
-$ npm install tether-select
+$ npm install tether-select-2
 ```
 
 __bower__
 ```sh
-$ bower install tether-select
+$ bower install tether-select-2
 ```
 
 ## Usage
