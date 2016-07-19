@@ -350,7 +350,10 @@ class Select extends Evented {
     for (let i = 0; i < options.length; ++i) {
       const option = options[i];
       if (option.selected) {
-        this.target.innerHTML = option.innerHTML;
+        const targetWrapper = document.createElement('span');
+        addClass(targetWrapper, 'target-wrapper');
+        targetWrapper.innerHTML = option.innerHTML;
+        this.target.appendChild(targetWrapper);
         break;
       }
     }
