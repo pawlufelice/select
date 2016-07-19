@@ -1,4 +1,4 @@
-/*! tether-select 1.1.1 */
+/*! tether-select-2 1.1.4 */
 
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -396,7 +396,10 @@ var Select = (function (_Evented) {
       for (var i = 0; i < options.length; ++i) {
         var option = options[i];
         if (option.selected) {
-          this.target.innerHTML = option.innerHTML;
+          var targetWrapper = document.createElement('span');
+          addClass(targetWrapper, 'target-wrapper');
+          targetWrapper.innerHTML = option.innerHTML;
+          this.target.appendChild(targetWrapper);
           break;
         }
       }
