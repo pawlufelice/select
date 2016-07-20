@@ -188,7 +188,7 @@ var Select = (function (_Evented) {
       var _this = this;
 
       this.target = document.createElement('a');
-      this.target.href = 'javascript:;';
+      this.target.href = '';
 
       addClass(this.target, 'select-target');
 

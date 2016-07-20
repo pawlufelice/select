@@ -158,7 +158,7 @@ class Select extends Evented {
 
   setupTarget() {
     this.target = document.createElement('a');
-    this.target.href = 'javascript:;';
+    this.target.href = '';
 
     addClass(this.target, 'select-target');
 
