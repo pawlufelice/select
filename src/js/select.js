@@ -355,8 +355,8 @@ class Select extends Evented {
         const targetWrapper = document.createElement('span');
         addClass(targetWrapper, 'target-wrapper');
         targetWrapper.innerHTML = option.innerHTML;
-        innerWidth = targetWrapper.offsetWidth;
         this.target.appendChild(targetWrapper);
+        innerWidth = targetWrapper.offsetWidth;
         break;
       }
     }
