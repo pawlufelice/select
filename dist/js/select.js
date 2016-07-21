@@ -1,4 +1,4 @@
-/*! tether-select-2 1.1.4 */
+/*! tether-select-2 1.1.5 */
 
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -393,17 +393,23 @@ var Select = (function (_Evented) {
       this.target.innerHTML = '';
 
       var options = this.select.querySelectorAll('option');
+      var innerWidth = undefined;
+
       for (var i = 0; i < options.length; ++i) {
         var option = options[i];
         if (option.selected) {
           var targetWrapper = document.createElement('span');
           addClass(targetWrapper, 'target-wrapper');
           targetWrapper.innerHTML = option.innerHTML;
+          innerWidth = targetWrapper.offsetWidth;
           this.target.appendChild(targetWrapper);
           break;
         }
       }
 
+      if (this.options.dynamicWidth) {
+        this.target.style.width = 'calc(' + innerWidth + 'px + ' + this.options.padding + ')';
+      }
       this.target.appendChild(document.createElement('b'));
     }
   }, {

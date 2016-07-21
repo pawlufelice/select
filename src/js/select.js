@@ -347,17 +347,24 @@ class Select extends Evented {
     this.target.innerHTML = '';
 
     const options = this.select.querySelectorAll('option');
+    let innerWidth;
+
     for (let i = 0; i < options.length; ++i) {
       const option = options[i];
       if (option.selected) {
         const targetWrapper = document.createElement('span');
         addClass(targetWrapper, 'target-wrapper');
         targetWrapper.innerHTML = option.innerHTML;
+        innerWidth = targetWrapper.offsetWidth;
         this.target.appendChild(targetWrapper);
         break;
       }
     }
 
+    if (this.options.dynamicWidth) {
+      this.target.style.width = 'calc(' + innerWidth + 'px + ' + this.options.padding + ')';
+      
+    }
     this.target.appendChild(document.createElement('b'));
   }
 
