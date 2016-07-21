@@ -347,17 +347,18 @@ class Select extends Evented {
     this.target.innerHTML = '';
 
     const options = this.select.querySelectorAll('option');
-    let innerWidth;
+    let innerWidth = 0;
 
     for (let i = 0; i < options.length; ++i) {
       const option = options[i];
+      const targetWrapper = document.createElement('span');
+      targetWrapper.innerHTML = option.innerHTML;
+      this.target.appendChild(targetWrapper);
+      innerWidth = Math.max(innerWidth, targetWrapper.offsetWidth)
       if (option.selected) {
-        const targetWrapper = document.createElement('span');
         addClass(targetWrapper, 'target-wrapper');
-        targetWrapper.innerHTML = option.innerHTML;
-        this.target.appendChild(targetWrapper);
-        innerWidth = targetWrapper.offsetWidth;
-        break;
+      } else {
+        this.target.removeChild(targetWrapper);
       }
     }
 
@@ -386,6 +387,10 @@ class Select extends Evented {
       }
 
       optionList.appendChild(option);
+    }
+
+    if (this.options.dynamicWidth) {
+      this.content.style.width = this.target.style.width;
     }
 
     this.content.innerHTML = '';

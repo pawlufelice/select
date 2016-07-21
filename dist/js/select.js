@@ -1,4 +1,4 @@
-/*! tether-select-2 1.1.7 */
+/*! tether-select-2 1.1.8 */
 
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -393,17 +393,18 @@ var Select = (function (_Evented) {
       this.target.innerHTML = '';
 
       var options = this.select.querySelectorAll('option');
-      var innerWidth = undefined;
+      var innerWidth = 0;
 
       for (var i = 0; i < options.length; ++i) {
         var option = options[i];
+        var targetWrapper = document.createElement('span');
+        targetWrapper.innerHTML = option.innerHTML;
+        this.target.appendChild(targetWrapper);
+        innerWidth = Math.max(innerWidth, targetWrapper.offsetWidth);
         if (option.selected) {
-          var targetWrapper = document.createElement('span');
           addClass(targetWrapper, 'target-wrapper');
-          targetWrapper.innerHTML = option.innerHTML;
-          this.target.appendChild(targetWrapper);
-          innerWidth = targetWrapper.offsetWidth;
-          break;
+        } else {
+          this.target.removeChild(targetWrapper);
         }
       }
 
@@ -432,6 +433,10 @@ var Select = (function (_Evented) {
         }
 
         optionList.appendChild(option);
+      }
+
+      if (this.options.dynamicWidth) {
+        this.content.style.width = this.target.style.width;
       }
 
       this.content.innerHTML = '';
